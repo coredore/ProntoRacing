@@ -3,6 +3,8 @@
   <head>
     <title>Pronto Racing</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/playWithText.css">
     <script>
     $.getJSON("https://gist.githubusercontent.com/WiNloSt/3a47f2ced0ce45c9275f297deaec5ab5/raw/ee1c2234c6e24dfba05e3673c00267aad4dbb7c8/data.json", function(json){
       var item = json[Math.floor(Math.random()*11)];
@@ -24,9 +26,21 @@
     </script>
   </head>
   <body>
-    <center>
-      <textarea cols="80" readonly id="textArea"></textarea><br>
-      <input type="text" name="inputText" id="inputText"><br>
-    </center>
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-header panel-primary">
+          <center>
+            <h2>Playing With Text of System.</h2>
+          </center>
+        </div>
+        <div class="panel-body">
+          <center>
+            <textarea class="form-control" cols="80" readonly id="textArea"></textarea><br>
+            <input class="form-control" type="text" name="inputText" id="inputText"><br>
+          </center>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>
