@@ -12,9 +12,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
     function start(){
-      var allText = $('#textArea').val().split(' ');
+      var fullText = $('#textArea').val()
+      var allText = fullText.split(' ');
       var textIndex = 0
+      var failCount = 0
       showTheText(allText, textIndex);
+      $('#inputText').focus().keyup(
+        function(e){
+          if(e.keyCode === 8)
+          failCount += 1
+      })
       $('#inputText').keypress(function(e) {
         if (e.keyCode == 0 || e.keyCode == 32){ // `0` works in mozilla and `320 in other`
           if(allText[textIndex] == $('#inputText').val()){
@@ -22,9 +29,12 @@
             textIndex += 1
             $('#inputText').val('')
             console.log($('#inputText').val())
-            
-            showTheText(allText, textIndex);
 
+            showTheText(allText, textIndex);
+            if (textIndex == allText.length){
+              var accuracy = (fullText.length-failCount)/fullText.length*100
+              alert("Accuracy = " + accuracy + "%")
+            }
           }else {
             console.log("fail" + allText[textIndex] + $('#inputText').val());
           }
@@ -44,7 +54,7 @@
 
       $('#textArea').val(showText)
     }
-    
+
 
     $('#play').click(function() {
       $('#play').hide();
