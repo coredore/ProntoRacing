@@ -5,7 +5,7 @@
         </title>    
     </head>
     <body>
-        <button id="signIn">Google sign-in</button>
+        <center><button id="signIn">Google sign-in</button></center>
     </body>
     <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
     <script src="js/firebase.js"></script>
@@ -19,6 +19,13 @@
         }
         var user = result.user;
         console.log(user);
+        if (user) {
+            var photoUrl = 'photoUrl=' + user.photoURL
+            var displayName = '&displayName=' + user.displayName
+            console.log(photoUrl, displayName);
+            window.location.replace('index.html?' + photoUrl + displayName);
+        }
+        
     });
 
     $('#signIn').click(function () {
