@@ -5,7 +5,12 @@
         </title>    
     </head>
     <body>
-        <center><button id="signIn">Google sign-in</button></center>
+        <center>
+            <br />
+            <img src="img/logo.png" width="300px" />
+            <br />
+            <button id="signIn">Google sign-in</button>
+        </center>
     </body>
     <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
     <script src="js/firebase.js"></script>
@@ -22,8 +27,9 @@
         if (user) {
             var photoUrl = 'photoUrl=' + user.photoURL
             var displayName = '&displayName=' + user.displayName
-            console.log(photoUrl, displayName);
-            window.location.replace('index.html?' + photoUrl + displayName);
+            var email = '&email=' + user.email
+            console.log(photoUrl, displayName, email);
+            window.location.replace('index.html?' + photoUrl + displayName + email);
         }
         
     });
