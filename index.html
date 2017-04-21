@@ -13,11 +13,14 @@
     <a href="./playwithtext.html"><button class="btn btn-success" type="button">Play with text.</button></a><br>
     <br />
     <a href="./playwithusertext.html"><button class="btn btn-success" type="button">Play with user text.</button></a>
-
+    <br />
+    <br />
+    <button id="sign-out" class="btn btn-success">Sign-out</button>
     </center>
     
   </div>
-    
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+    <script src="js/firebase.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/findGetParameter.js"></script>
     <script>
@@ -30,6 +33,14 @@
       console.log(photoUrl, displayName);
       $('#photo').attr('src', photoUrl);
       $('#name').html(displayName);
+
+      $('#sign-out').click(function (){
+        firebase.auth().signOut().then(function() {
+          window.location.replace('login.html');
+        }, function(error) {
+          console.error('Sign Out Error', error);
+        });
+      })
     </script>
   </body>
 </html>
