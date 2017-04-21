@@ -5,24 +5,32 @@
         </title>    
     </head>
     <body>
-        
+        <button id="signIn">Google sign-in</button>
     </body>
     <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
     <script src="js/firebase.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <script>
     // Using a redirect.
     firebase.auth().getRedirectResult().then(function(result) {
-    if (result.credential) {
-        // This gives you a Google Access Token.
-        var token = result.credential.accessToken;
-    }
-    var user = result.user;
+        if (result.credential) {
+            // This gives you a Google Access Token.
+            var token = result.credential.accessToken;
+        }
+        var user = result.user;
+        console.log(user);
     });
 
-    // Start a sign in process for an unauthenticated user.
-    var provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    firebase.auth().signInWithRedirect(provider);
+    $('#signIn').click(function () {
+        signIn();
+    });
+
+    function signIn(){
+        // Start a sign in process for an unauthenticated user.
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        firebase.auth().signInWithRedirect(provider);
+    }
     </script>
 </html>
