@@ -5,10 +5,26 @@
   </head>
   <body>
     <center>
-
+    <br />
+    <img id="photo" src="" width="200px" height="200px" />
+    <h1 id="name"></h1>
     <a href="./playwithtext.html"><button type="button">Play with text.</button></a><br>
+    <br />
     <a href="./playwithusertext.html"><button type="button">Play with user text.</button></a>
 
     </center>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/findGetParameter.js"></script>
+    <script>
+      var photoUrl = findGetParameter('photoUrl');
+      var displayName = findGetParameter('displayName');
+      if (photoUrl == null || displayName == null) {
+        window.location.replace('login.html');
+      }
+
+      console.log(photoUrl, displayName);
+      $('#photo').attr('src', photoUrl);
+      $('#name').html(displayName);
+    </script>
   </body>
 </html>
