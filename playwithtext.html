@@ -14,10 +14,19 @@
     <script>
     $.getJSON("https://gist.githubusercontent.com/WiNloSt/3a47f2ced0ce45c9275f297deaec5ab5/raw/ee1c2234c6e24dfba05e3673c00267aad4dbb7c8/data.json", function(json){
       var item = json[Math.floor(Math.random()*11)];
+      var fullText = item
         $('#textArea').val(item);
         var allText = item.split(' ');
         var textIndex = 0
         showTheText(allText, textIndex);
+        var failCount = 0
+        showTheText(allText, textIndex);
+        $('#inputText').focus().keyup(
+          function(e){
+            if(e.keyCode === 8){
+              failCount += 1
+            }
+        })
         $('#inputText').keypress(function(e) {
           if (e.keyCode == 0 || e.keyCode == 32){ // `0` works in mozilla and `320 in other`
             if(allText[textIndex] == $('#inputText').val()){
@@ -25,6 +34,10 @@
               textIndex += 1
               $('#inputText').val('')
               showTheText(allText, textIndex);
+              if (textIndex == allText.length){
+                var accuracy = (fullText.length-failCount)/fullText.length*100
+                alert("Accuracy = " + accuracy.toFixed(2) + "%")
+              }
             }else {
               console.log("fail" + allText[textIndex] + $('#inputText').val());
             }
