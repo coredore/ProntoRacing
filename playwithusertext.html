@@ -14,6 +14,7 @@
     function start(){
       var allText = $('#textArea').val().split(' ');
       var textIndex = 0
+      showTheText(allText, textIndex);
       $('#inputText').keypress(function(e) {
         if (e.keyCode == 0 || e.keyCode == 32){ // `0` works in mozilla and `320 in other`
           if(allText[textIndex] == $('#inputText').val()){
@@ -21,12 +22,27 @@
             textIndex += 1
             $('#inputText').val('')
             console.log($('#inputText').val())
+            
+            showTheText(allText, textIndex);
+
           }else {
             console.log("fail" + allText[textIndex] + $('#inputText').val());
           }
         }
         $('#inputText').val($('#inputText').val().replace(' ', ''))
       });
+    }
+
+    function showTheText(allText, textIndex){
+      var showText = ""
+      for (var k = 0 ; k < allText.length ; k++) {
+        if (k == textIndex)
+          showText += " \"" + allText[k] + "\""
+        else
+          showText += " " + allText[k]
+      }
+
+      $('#textArea').val(showText)
     }
     
 
